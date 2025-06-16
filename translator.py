@@ -11,7 +11,7 @@ def main():
     global last_text
     while True:
         try:
-            text = pyperclip.paste().strip()
+            text = pyperclip.paste().strip().lower()
             if text != last_text and text != "" and len(text)<100:
                 print("you copy:", text)
                 last_text = text
@@ -31,12 +31,10 @@ def main():
                     '-timeout', '5',
                     '-actions', 'Skip'
                 ]
-                # Capture the user's response
-
-                # Only speak if not skipped
+            
                 os.system(f'''terminal-notifier -title "📘 Translation" -message "{translation}" -subtitle "of: {text}" -timeout 2''')
                 os.system(f'say -v Samantha "{text}"')
-                os.system(f'say -v Carmit "{translation}"')
+                #os.system(f'say -v Carmit "{translation}"')
 
             time.sleep(1.0)
 
